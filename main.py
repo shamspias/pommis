@@ -5,21 +5,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 token = os.getenv("token")
-print(token)
+
+client = discord.Client()
 
 
-class MyClient(discord.Client):
-    async def on_ready(self):
-        print('Logged on as', self.user)
-
-    async def on_message(self, message):
-        # don't respond to ourselves
-        if message.author == self.user:
-            return
-
-        if message.content == 'ping':
-            await message.channel.send('pong')
+@client.event
+async def on_message(message):
+    message.content.lower()
+    if message.author == client.user:
+        return
+    if message.content.startwith("hello"):
+        await message.channel.send("Hi, Your bot is here")
 
 
-client = MyClient()
 client.run(token)
