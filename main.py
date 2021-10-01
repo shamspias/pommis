@@ -123,17 +123,4 @@ async def clear(ctx, amount=5):
     await ctx.send("Messages have been cleared")
 
 
-# @commands.guild_only()
-# async def leave(self, ctx):
-#     """Leaves the voice channel, if currently in one."""
-#     client = ctx.guild.voice_client
-#     state = self.get_state(ctx.guild)
-#     if client and client.channel:
-#         await client.disconnect()
-#         state.playlist = []
-#         state.now_playing = None
-#     else:
-#         raise commands.CommandError("Not in a voice channel.")
-
-
 client.run(os.getenv('token'))
