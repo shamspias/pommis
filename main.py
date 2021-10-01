@@ -1,4 +1,3 @@
-import discord
 import os
 # load our local env so we dont have the token in public
 from dotenv import load_dotenv
@@ -8,10 +7,18 @@ from discord import FFmpegPCMAudio
 from discord import TextChannel
 from youtube_dl import YoutubeDL
 
+import validators
+import get_songs
+
 load_dotenv()
 client = commands.Bot(command_prefix='.')  # prefix our commands with '.'
 
 players = {}
+
+
+def convert_tuple_to_strong(tup):
+    st = ' '.join(map(str, tup))
+    return st
 
 
 @client.event  # check if pommis is ready
@@ -32,14 +39,37 @@ async def join(ctx):
         voice = await channel.connect()
 
 
+# Command to leave from voice ch
+@client.command(aliases=["dc", "DC", "dC", "Dc"])
+async def leave(ctx):
+    if (ctx.voice_client):  # If the bot is in a voice channel
+        await ctx.guild.voice_client.disconnect()  # Leave the channel
+        await ctx.send('Pommis left')
+    else:  # But if it isn't
+        await ctx.send("I'm not in a voice channel, use the join or j command to make me join")
+
+
 # command to play sound from a youtube URL
-@client.command(aliases=["ply", "P", "p", "Ply", "PLy", "PLY", "pLY", "plY"])
-async def play(ctx, url):
+@client.command(aliases=["ply", "P", "p", "Ply", "PLy", "PLY", "pLY", "plY"], brief="Plays audio from <url>.")
+@commands.guild_only()
+async def play(ctx, *text):
+    url = convert_tuple_to_strong(text)
+    await ctx.send(url)
     YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
     FFMPEG_OPTIONS = {
         'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
     voice = get(client.voice_clients, guild=ctx.guild)
+    if not voice:
+        print("test")
+        await join(ctx)
+        voice = get(client.voice_clients, guild=ctx.guild)
 
+    if not validators.url(url):
+        song_info = get_songs.get_from_youtube(url)
+        url = song_info[0]
+        await ctx.send(song_info[1])
+
+    print(url)
     if not voice.is_playing():
         with YoutubeDL(YDL_OPTIONS) as ydl:
             info = ydl.extract_info(url, download=False)
@@ -86,9 +116,24 @@ async def stop(ctx):
 
 # command to clear channel messages
 @client.command()
+@commands.guild_only()
+@commands.has_permissions(administrator=True)
 async def clear(ctx, amount=5):
     await ctx.channel.purge(limit=amount)
     await ctx.send("Messages have been cleared")
+
+
+# @commands.guild_only()
+# async def leave(self, ctx):
+#     """Leaves the voice channel, if currently in one."""
+#     client = ctx.guild.voice_client
+#     state = self.get_state(ctx.guild)
+#     if client and client.channel:
+#         await client.disconnect()
+#         state.playlist = []
+#         state.now_playing = None
+#     else:
+#         raise commands.CommandError("Not in a voice channel.")
 
 
 client.run(os.getenv('token'))
