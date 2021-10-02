@@ -214,7 +214,10 @@ class Music(commands.Cog):
     async def queue(self, ctx):
         """Display the current play queue."""
         state = self.get_state(ctx.guild)
-        await ctx.send("", embed=self._queue_text(state.playlist))
+        try:
+            await ctx.send("", embed=self._queue_text(state.playlist))
+        except:
+            await ctx.send("The play queue is empty.")
 
     def _queue_text(self, queue):
         """Returns a block of text describing a given song queue."""
