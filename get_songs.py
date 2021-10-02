@@ -1,17 +1,20 @@
 from youtubesearchpython import VideosSearch
 
 
-def get_from_youtube(text, song_result_limit=1):
-    """
-    Get Songs from youtube
-    :param text:
-    :return:
-    """
-    videosSearch = VideosSearch(text, limit=song_result_limit)
+class GetSongs(VideosSearch):
 
-    info = videosSearch.result()["result"]
+    def get_from_youtube(self, text, song_result_limit=1):
+        """
+        Get Songs from youtube
+        :param song_result_limit: To Query limitation to search
+        :param text:
+        :return:Song Link And Title
+        """
+        videos_search = VideosSearch(text, limit=song_result_limit)
 
-    for i in info:
-        return [i["link"], i["title"]]
-        # print(i["title"])
-        # print(i["link"])
+        info = videos_search.result()["result"]
+
+        for i in info:
+            return [i["link"], i["title"]]
+            # print(i["title"])
+            # print(i["link"])

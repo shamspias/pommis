@@ -1,14 +1,15 @@
 import os
 # load our local env so we dont have the token in public
-from dotenv import load_dotenv
 from discord.ext import commands
 from discord.utils import get
 from discord import FFmpegPCMAudio
 from discord import TextChannel
 from youtube_dl import YoutubeDL
-
 import validators
-import get_songs
+
+from get_songs import GetSongs
+
+from dotenv import load_dotenv
 
 load_dotenv()
 client = commands.Bot(command_prefix='.')  # prefix our commands with '.'
@@ -54,7 +55,7 @@ async def play(ctx, *text):
         voice = get(client.voice_clients, guild=ctx.guild)
 
     if not validators.url(url):
-        song_info = get_songs.get_from_youtube(url)
+        song_info = GetSongs.get_from_youtube(url)
         url = song_info[0]
         await ctx.send(song_info[1])
 
