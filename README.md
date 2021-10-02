@@ -83,6 +83,8 @@ play or add to queue
 
 `leave' or `dc` to disconnect from channel
 
+`clear number` to delete text and chatting from channel(Admin only)
+
 
 
 -------------------
