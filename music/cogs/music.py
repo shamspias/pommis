@@ -225,11 +225,11 @@ class Music(commands.Cog):
                 f"  {index + 1}. **{song.title}** (requested by **{song.requested_by.name}**)"
                 for (index, song) in enumerate(queue)
             ]  # add individual songs
-            queue_message = "\n"
             queue_message = "\n".join(song_names_in_queue)
 
+            title_message = "".join(message)
             embed = discord.Embed(
-                title=message, description=queue_message)
+                title=title_message, description=queue_message)
 
             return embed
         else:
@@ -255,7 +255,7 @@ class Music(commands.Cog):
             song = state.playlist.pop(song - 1)  # take song at index...
             state.playlist.insert(new_index - 1, song)  # and insert it.
 
-            await ctx.send(self._queue_text(state.playlist))
+            await ctx.send("", embed=self._queue_text(state.playlist))
         else:
             raise commands.CommandError("You must use a valid index.")
 
