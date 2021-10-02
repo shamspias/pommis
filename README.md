@@ -74,16 +74,16 @@ use `help` to get more info
 
 `join` or `j` to join in same voice channel
 
-`play` or `p` then youtube link or song name to 
+`play` or `p` then YouTube link or song name to 
 play or add to queue
 
 `skip` or `s` to skip
 
 `stop` to stop
 
-`leave' or `dc` to disconnect from channel
+`leave` or `dc` to disconnect from channel
 
-`clear number` to delete text and chatting from channel(Admin only)
+`clear` `number` to delete text and chatting from channel(Admin only)
 
 
 
