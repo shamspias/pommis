@@ -214,17 +214,24 @@ class Music(commands.Cog):
     async def queue(self, ctx):
         """Display the current play queue."""
         state = self.get_state(ctx.guild)
-        await ctx.send(self._queue_text(state.playlist))
+        await ctx.send("", embed=self._queue_text(state.playlist))
 
     def _queue_text(self, queue):
         """Returns a block of text describing a given song queue."""
         if len(queue) > 0:
             message = [f"{len(queue)} songs in queue:"]
-            message += [
+            song_names_in_queue = []
+            song_names_in_queue += [
                 f"  {index + 1}. **{song.title}** (requested by **{song.requested_by.name}**)"
                 for (index, song) in enumerate(queue)
             ]  # add individual songs
-            return "\n".join(message)
+            queue_message = "\n"
+            queue_message = "\n".join(song_names_in_queue)
+
+            embed = discord.Embed(
+                title=message, description=queue_message)
+
+            return embed
         else:
             return "The play queue is empty."
 
@@ -237,7 +244,7 @@ class Music(commands.Cog):
         state = self.get_state(ctx.guild)
         state.playlist = []
 
-    @commands.command(aliases=["jq", "skipto"])
+    @commands.command(aliases=["jq", "change_queue"])
     @commands.guild_only()
     @commands.check(audio_playing)
     # @commands.has_permissions(administrator=True)

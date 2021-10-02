@@ -34,6 +34,7 @@ class Video:
                     info["entries"][0]["url"])  # get info for first video
             else:
                 video = info
+
             return video
 
     def get_embed(self):
