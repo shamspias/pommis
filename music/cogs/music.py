@@ -64,6 +64,13 @@ class Music(commands.Cog):
             self.states[guild.id] = GuildState()
             return self.states[guild.id]
 
+    @commands.command()
+    @commands.guild_only()
+    @commands.has_permissions(administrator=True)
+    async def clear(self, ctx, amount=1):
+        await ctx.channel.purge(limit=amount)
+        await ctx.send("Messages have been cleared")
+
     @commands.command(aliases=["dc", "DC", "Dc", "dC"])
     @commands.guild_only()
     # @commands.has_permissions(administrator=True)
