@@ -68,6 +68,20 @@ use
         python -m music
 
 -------------------------------
+# Comments
+
+use `help` to get more info
+
+`play` or `p` then youtube link or song name to 
+play or add to queue
+
+`skip` or `s` to skip
+
+`stop` to stop
+
+
+
+-------------------
 
 
 
