@@ -274,11 +274,12 @@ class Music(commands.Cog):
     async def remove_queue(self, ctx, song: int):
         """Delete song by using an index in queue."""
         state = self.get_state(ctx.guild)  # get state for this guild
-        if 1 <= song <= len(state.playlist):
-            del state.playlist[song - 1]
-            await ctx.send("", embed=self._queue_text(state.playlist))
-        else:
-            raise commands.CommandError("You must use a valid index.")
+        try:
+            if 1 <= song <= len(state.playlist):
+                del state.playlist[song - 1]
+                await ctx.send("", embed=self._queue_text(state.playlist))
+        except:
+            raise commands.CommandError("You must use a valid index or no song in queue")
 
     @commands.command(aliases=["jq", "change_queue"])
     @commands.guild_only()
