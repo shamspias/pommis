@@ -97,7 +97,27 @@ play or add to queue
 example: want to bring song number 10 to number 1 in queue just use .jump_queue 10 1
 
 -------------------
+# Deploy Using PM2
 
+## Ubuntu server
+
+Do the virtualenv process
+then
+
+Install Nodejs and npm then install pm2
+
+        sudo apt install nodejs
+        sudo apt install npm
+        sudo npm install -g pm2
+Then run the comment
+
+        pm2 start music/__main__.py --name=pommis --interpreter=your_env_name/bin/python3
+
+can see logs just use
+        
+        pm2 logs pommis(apps name)
+
+---------------------------------
 
 
 
