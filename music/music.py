@@ -71,7 +71,7 @@ class Music(commands.Cog):
         """
         to check ping.
         """
-        await ctx.send(f"your ping! {round(self.bot.latency * 1000)}ms")
+        await ctx.send(f"your ping is {round(self.bot.latency * 1000)}ms")
 
     @commands.command()
     @commands.guild_only()
