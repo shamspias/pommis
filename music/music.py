@@ -249,7 +249,7 @@ class Music(commands.Cog):
 
             return embed
         else:
-            return "The play queue is empty."
+            return "The play queue is empty.."
 
     @commands.command(aliases=["cq"])
     @commands.guild_only()
