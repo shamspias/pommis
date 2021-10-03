@@ -1,7 +1,7 @@
 from discord.ext import commands
 import discord
 from datetime import datetime
-from .. import util
+import util
 
 
 class Meta(commands.Cog):

@@ -4,8 +4,10 @@ import asyncio
 import youtube_dl
 import logging
 import math
+from os import path
 from urllib import request
-from ..video import Video
+from video import Video
+
 
 # TODO: abstract FFMPEG options into their own file?
 FFMPEG_BEFORE_OPTS = '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5'

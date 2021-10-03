@@ -1,6 +1,6 @@
-from . import bot
 import logging
-from . import config
+
+import bot
 
 if __name__ == "__main__":
     formatter = logging.Formatter(
