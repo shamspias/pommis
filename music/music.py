@@ -67,6 +67,14 @@ class Music(commands.Cog):
 
     @commands.command()
     @commands.guild_only()
+    async def ping(self, ctx):
+        """
+        to check ping
+        """
+        await ctx.send(f"your ping! {round(self.bot.latency * 1000)}ms")
+
+    @commands.command()
+    @commands.guild_only()
     @commands.has_permissions(administrator=True)
     async def clear(self, ctx, amount=1):
         """
