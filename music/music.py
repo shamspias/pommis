@@ -8,7 +8,6 @@ from os import path
 from urllib import request
 from video import Video
 
-
 # TODO: abstract FFMPEG options into their own file?
 FFMPEG_BEFORE_OPTS = '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5'
 """
@@ -70,8 +69,17 @@ class Music(commands.Cog):
     @commands.guild_only()
     @commands.has_permissions(administrator=True)
     async def clear(self, ctx, amount=1):
-        await ctx.channel.purge(limit=amount)
-        await ctx.send("Messages have been cleared")
+        """
+        To clear text from channel
+        permission: manage messages
+        example: .clear 10
+                it will clear 10 upper messages from that channel
+        """
+        try:
+            await ctx.channel.purge(limit=amount)
+            await ctx.send("Messages have been cleared")
+        except:
+            await ctx.send("Need Manage messages permission and you need to be an admin")
 
     @commands.command(aliases=["dc", "DC", "Dc", "dC"])
     @commands.guild_only()
@@ -87,21 +95,24 @@ class Music(commands.Cog):
         else:
             raise commands.CommandError("Not in a voice channel.")
 
-    @commands.command(aliases=["j", "J"])
-    @commands.guild_only()
-    # @commands.has_permissions(administrator=True)
-    async def join(self, ctx):
-        """Join the voice channel, if currently Not in."""
-        client = ctx.guild.voice_client
-        state = self.get_state(ctx.guild)
-        if not client:
-            if ctx.author.voice is not None and ctx.author.voice.channel is not None:
-                channel = ctx.author.voice.channel
-                client = await channel.connect()
-            else:
-                await ctx.send("Please Connected to a voice channel 1st")
-        else:
-            await ctx.send("Already in a voice channel.")
+    # Join comments no need because
+    # play already have that functionality
+
+    # @commands.command(aliases=["j", "J"])
+    # @commands.guild_only()
+    # # @commands.has_permissions(administrator=True)
+    # async def join(self, ctx):
+    #     """Join the voice channel, if currently Not in."""
+    #     client = ctx.guild.voice_client
+    #     state = self.get_state(ctx.guild)
+    #     if not client:
+    #         if ctx.author.voice is not None and ctx.author.voice.channel is not None:
+    #             channel = ctx.author.voice.channel
+    #             client = await channel.connect()
+    #         else:
+    #             await ctx.send("Please Connected to a voice channel 1st")
+    #     else:
+    #         await ctx.send("Already in a voice channel.")
 
     @commands.command(aliases=["resume", "pus", "pouse"])
     @commands.guild_only()

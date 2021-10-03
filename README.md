@@ -83,7 +83,7 @@ play or add to queue
 
 `leave` or `dc` to disconnect from channel
 
-`clear` `number` to delete text and chatting from channel(Admin only)
+`clear` `number` to delete text and chatting from channel(Admin only and need `manage messages` permission)
 
 `queue ` or `q` to show list of music in queue
 
