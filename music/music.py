@@ -279,7 +279,7 @@ class Music(commands.Cog):
                 del state.playlist[song - 1]
                 await ctx.send("", embed=self._queue_text(state.playlist))
         except:
-            raise commands.CommandError("You must use a valid index or no song in queue")
+            await ctx.send("You must use a valid index or no song in queue")
 
     @commands.command(aliases=["jq", "change_queue"])
     @commands.guild_only()
