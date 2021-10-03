@@ -89,7 +89,7 @@ play or add to queue
 
 `clear_queue` or `cq` to clear current queue
 
-`remove` `number` or `number` `rq` to remove song from queue,
+`remove` `number` or `rq` `number`  to remove song from queue,
 here number mean song index number in queue
 
 `resume`  `pus` `pouse`  `pause` to Pause the song and resume the song,
