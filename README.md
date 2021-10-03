@@ -65,7 +65,7 @@ Example:
 
 use 
 
-        python -m music
+        python music/__main__.py
 
 -------------------------------
 # Comments
