@@ -66,6 +66,23 @@ class Music(commands.Cog):
             self.states[guild.id] = GuildState()
             return self.states[guild.id]
 
+    @commands.command(aliases=["loop"])
+    @commands.guild_only()
+    async def repeat(self, ctx):
+        """
+        To Loop the song
+        """
+        state = self.get_state(ctx.guild)
+        client = ctx.guild.voice_client
+
+    @commands.command()
+    @commands.guild_only()
+    async def loop_queue(self, ctx):
+        """
+        To Loop the Queue
+        """
+        pass
+
     @commands.command()
     @commands.guild_only()
     async def ping(self, ctx):
@@ -156,10 +173,17 @@ class Music(commands.Cog):
                 ctx.author).administrator or state.is_requester(ctx.author):
             # immediately skip if requester or admin
             client.stop()
+            # to show which song is playing
+            await self.now_playing(ctx)
+
         elif self.config["vote_skip"]:
             # vote to skip song
             channel = client.channel
             self._vote_skip(channel, ctx.author)
+
+            # to show which song is playing
+            await self.now_playing(ctx)
+
             # announce vote
             users_in_channel = len([
                 member for member in channel.members if not member.bot
@@ -169,6 +193,7 @@ class Music(commands.Cog):
             await ctx.send(
                 f"{ctx.author.mention} voted to skip ({len(state.skip_votes)}/{required_votes} votes)"
             )
+
         else:
             raise commands.CommandError("Sorry, vote skipping is disabled.")
 
@@ -295,7 +320,6 @@ class Music(commands.Cog):
     @commands.command(aliases=["jq", "change_queue"])
     @commands.guild_only()
     @commands.check(audio_playing)
-    # @commands.has_permissions(administrator=True)
     async def jump_queue(self, ctx, song: int, new_index: int):
         """Moves song at an index to `new_index` in queue."""
         state = self.get_state(ctx.guild)  # get state for this guild
@@ -403,6 +427,7 @@ class GuildState:
         self.playlist = []
         self.skip_votes = set()
         self.now_playing = None
+        self.loop = False
 
     def is_requester(self, user):
         return self.now_playing.requested_by == user
