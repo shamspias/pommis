@@ -7,6 +7,7 @@ import math
 from os import path
 from urllib import request
 from video import Video
+from pagination import AutoEmbedPaginator
 
 # TODO: abstract FFMPEG options into their own file?
 FFMPEG_BEFORE_OPTS = '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5'
@@ -210,10 +211,11 @@ class Music(commands.Cog):
         source = discord.PCMVolumeTransformer(
             discord.FFmpegPCMAudio(song.stream_url, before_options=FFMPEG_BEFORE_OPTS), volume=state.volume)
 
-        def after_playing(err):
+        async def after_playing(err):
             if len(state.playlist) > 0:
                 next_song = state.playlist.pop(0)
                 self._play_song(client, state, next_song)
+
             else:
                 asyncio.run_coroutine_threadsafe(client.disconnect(),
                                                  self.bot.loop)
@@ -236,26 +238,54 @@ class Music(commands.Cog):
         """Display the current play queue."""
         state = self.get_state(ctx.guild)
         try:
-            await ctx.send("", embed=self._queue_text(state.playlist))
+            paginator = AutoEmbedPaginator(ctx)
+            await paginator.run(self._queue_text(state.playlist))
+            # await ctx.send("", embed=self._queue_text(state.playlist)[0])
         except:
             await ctx.send("The play queue is empty.")
 
     def _queue_text(self, queue):
         """Returns a block of text describing a given song queue."""
-        if len(queue) > 0:
-            message = [f"{len(queue)} songs in queue:"]
+        ql = len(queue)
+        if ql > 0:
+            message = [f"{ql} songs in queue:"]
             song_names_in_queue = []
             song_names_in_queue += [
                 f"  {index + 1}. **{song.title}** (requested by **{song.requested_by.name}**)"
                 for (index, song) in enumerate(queue)
             ]  # add individual songs
-            queue_message = "\n".join(song_names_in_queue)
 
             title_message = "".join(message)
-            embed = discord.Embed(
-                title=title_message, description=queue_message)
 
-            return embed
+            pagination_list = []
+            len_queue_songs = len(song_names_in_queue)
+            if len_queue_songs > 5:
+                for i in range(0, len_queue_songs - 5, 5):
+                    queue_message = "\n".join(song_names_in_queue[:5])
+                    embed = discord.Embed(
+                        title=title_message, description=queue_message).add_field(name="Pommis",
+                                                                                  value="Page " + str(i + 1))
+
+                    pagination_list.append(embed)
+                    del song_names_in_queue[:5]
+
+                if len(song_names_in_queue) <= 5:
+                    queue_message = "\n".join(song_names_in_queue)
+                    len_pagination_list = len(pagination_list)
+                    embed = discord.Embed(
+                        title=title_message, description=queue_message).add_field(name="Pommis",
+                                                                                  value="Page " + str(
+                                                                                      len_pagination_list))
+                    pagination_list.append(embed)
+
+            else:
+                queue_message = "\n".join(song_names_in_queue)
+                embed = discord.Embed(
+                    title=title_message, description=queue_message).add_field(name="Pommis",
+                                                                              value="Page 1")
+                pagination_list.append(embed)
+
+            return pagination_list
         else:
             return "The play queue is empty."
 
