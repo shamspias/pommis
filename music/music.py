@@ -353,7 +353,7 @@ class Music(commands.Cog):
                     video = Video(url, ctx.author)
                 except youtube_dl.DownloadError as e:
                     await ctx.send(
-                        "There was an error downloading your video, sorry.")
+                        "There was an error downloading your video, sorry.a")
                     return
                 client = await channel.connect()
                 self._play_song(client, state, video)
