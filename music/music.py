@@ -104,25 +104,6 @@ class Music(commands.Cog):
         else:
             raise commands.CommandError("Not in a voice channel.")
 
-    # Join comments no need because
-    # play already have that functionality
-
-    # @commands.command(aliases=["j", "J"])
-    # @commands.guild_only()
-    # # @commands.has_permissions(administrator=True)
-    # async def join(self, ctx):
-    #     """Join the voice channel, if currently Not in."""
-    #     client = ctx.guild.voice_client
-    #     state = self.get_state(ctx.guild)
-    #     if not client:
-    #         if ctx.author.voice is not None and ctx.author.voice.channel is not None:
-    #             channel = ctx.author.voice.channel
-    #             client = await channel.connect()
-    #         else:
-    #             await ctx.send("Please Connected to a voice channel 1st")
-    #     else:
-    #         await ctx.send("Already in a voice channel.")
-
     @commands.command(aliases=["resume", "pus", "pouse"])
     @commands.guild_only()
     @commands.check(audio_playing)
@@ -275,7 +256,7 @@ class Music(commands.Cog):
                     embed = discord.Embed(
                         title=title_message, description=queue_message).add_field(name="Pommis",
                                                                                   value="Page " + str(
-                                                                                      len_pagination_list) + 1)
+                                                                                      len_pagination_list))
                     pagination_list.append(embed)
 
             else:
