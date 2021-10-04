@@ -275,7 +275,7 @@ class Music(commands.Cog):
                     embed = discord.Embed(
                         title=title_message, description=queue_message).add_field(name="Pommis",
                                                                                   value="Page " + str(
-                                                                                      len_pagination_list))
+                                                                                      len_pagination_list) + 1)
                     pagination_list.append(embed)
 
             else:
