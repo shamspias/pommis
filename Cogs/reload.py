@@ -21,7 +21,7 @@ class CogReaload(commands.Cog):
         if not await Check().userAndBotInSameVoiceChannel(ctx, self.bot): return
 
         player = self.bot.wavelink.get_player(ctx.guild.id)
-        await player.seek(0)  # Relaod the song
+        await player.seek(0)  # Reload the song
 
         await ctx.send(f"{ctx.author.mention} Current music reload!")
 

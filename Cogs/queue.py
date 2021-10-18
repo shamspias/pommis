@@ -43,12 +43,12 @@ class CogQueue(commands.Cog):
                     embedTitle = ""
 
                 embed = discord.Embed(title=embedTitle, description=message, color=discord.Colour.random())
-                embed.set_footer(text=f"Requested by {ctx.author} | Open source", icon_url=ctx.author.avatar_url)
+                embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
                 await ctx.send(embed=embed)
                 message = ""
         if len(message) > 0:
             embed = discord.Embed(title="", description=message, color=discord.Colour.random())
-            embed.set_footer(text=f"Requested by {ctx.author} | Open source", icon_url=ctx.author.avatar_url)
+            embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
 
 

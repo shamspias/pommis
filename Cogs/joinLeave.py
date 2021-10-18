@@ -13,20 +13,19 @@ class CogJoinLeave(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-
-    @commands.command(name = "join",
+    @commands.command(name="join",
                       aliases=["Join", "JOIN", "j", "J"],
-                    usage="",
-                    description = "Add the bot in your voice channel")
+                      usage="",
+                      description="Add the bot in your voice channel")
     @commands.guild_only()
     @commands.cooldown(1, 5, commands.BucketType.member)
     async def join(self, ctx):
-        
-        if not await Check().userInVoiceChannel(ctx, self.bot): return 
-        if not await Check().botNotInVoiceChannel(ctx, self.bot): return 
+
+        if not await Check().userInVoiceChannel(ctx, self.bot): return
+        if not await Check().botNotInVoiceChannel(ctx, self.bot): return
 
         channel = ctx.author.voice.channel
-        
+
         player = self.bot.wavelink.get_player(ctx.guild.id)
         await player.connect(channel.id)
 
@@ -34,14 +33,13 @@ class CogJoinLeave(commands.Cog):
         DBQueue(self.bot.dbConnection).clear(ctx.guild.id)
         # Clear all server music parameters
         DBServer(self.bot.dbConnection).clearMusicParameters(ctx.guild.id, False, False)
-        
-        await ctx.send(f"{ctx.author.mention} Connected in **`{channel.name}`**!")
-        
 
-    @commands.command(name = "leave",
-                    aliases=["dc", "DC", "Dc", "dC"],
-                    usage="",
-                    description = "Leave the bot of your voice channel")
+        await ctx.send(f"{ctx.author.mention} Connected in **`{channel.name}`**!")
+
+    @commands.command(name="leave",
+                      aliases=["dc", "DC", "Dc", "dC"],
+                      usage="",
+                      description="Leave the bot of your voice channel")
     @commands.guild_only()
     @commands.cooldown(1, 5, commands.BucketType.member)
     async def leave(self, ctx):
@@ -49,8 +47,8 @@ class CogJoinLeave(commands.Cog):
         if not await Check().botInVoiceChannel(ctx, self.bot): return
 
         if not ctx.author.guild_permissions.administrator:
-            if not await Check().userInVoiceChannel(ctx, self.bot): return 
-            if not await Check().userAndBotInSameVoiceChannel(ctx, self.bot): return 
+            if not await Check().userInVoiceChannel(ctx, self.bot): return
+            if not await Check().userAndBotInSameVoiceChannel(ctx, self.bot): return
 
         player = self.bot.wavelink.get_player(ctx.guild.id)
         channelId = player.channel_id
@@ -66,7 +64,6 @@ class CogJoinLeave(commands.Cog):
         DBServer(self.bot.dbConnection).clearMusicParameters(ctx.guild.id, False, False)
 
         await ctx.channel.send(f"{ctx.author.mention} Disconnected from **`{channel.name}`**!")
-        
 
 
 def setup(bot):

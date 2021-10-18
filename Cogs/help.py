@@ -99,7 +99,7 @@ class HelpCog(commands.Cog, name="help command"):
             # **{self.bot.command_prefix}leavecleanup :** Remove absent user's songs from the queue.
 
             embed = discord.Embed(title=f"__**Help page of {self.bot.user.name.upper()}**__",
-                                  description="[**GitHub**](https://github.com/shamspias/Music-Discord-Bot)",
+                                  description="[**GitHub**](https://github.com/shamspias/pommis/tree/pommisv2)",
                                   color=discord.Colour.random())
             embed.set_thumbnail(url=f'{self.bot.user.avatar_url}')
             embed.add_field(name=f"__COMMANDS :__", value=message1, inline=False)

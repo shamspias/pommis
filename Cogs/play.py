@@ -165,7 +165,7 @@ async def searchQuery(self, ctx, args):
     embed = discord.Embed(title="Search results :",
                           description=f"choose the number that corresponds to the music.\nWrite `0` to pass the cooldown.\n\n{message}",
                           color=discord.Colour.random())
-    embed.set_footer(text=f"Requested by {ctx.author} | Open source", icon_url=ctx.author.avatar_url)
+    embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
     await ctx.send(embed=embed)
 
     def check(message):
@@ -210,7 +210,7 @@ async def playlistTooLarge(self, ctx):
     embed = discord.Embed(title="Search results :",
                           description=f"{self.bot.emojiList.false} The playlist is too big! (max : {self.playlistLimit} tracks)",
                           color=discord.Colour.random())
-    embed.set_footer(text=f"Requested by {ctx.author} | Open source", icon_url=ctx.author.avatar_url)
+    embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
     await ctx.send(embed=embed)
 
 
@@ -218,7 +218,7 @@ async def noResultFound(self, ctx):
     """Send an embed with the error : no result found."""
     embed = discord.Embed(title="Search results :", description=f"{self.bot.emojiList.false} No result found!",
                           color=discord.Colour.random())
-    embed.set_footer(text=f"Requested by {ctx.author} | Open source", icon_url=ctx.author.avatar_url)
+    embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
     await ctx.send(embed=embed)
 
 

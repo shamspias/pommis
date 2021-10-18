@@ -54,7 +54,7 @@ class EventsCog(commands.Cog, name="EventsCog"):
             return await ctx.send(f"{ctx.author.mention} Your request cannot only contain `{error.close_quote}`")
 
         embed = discord.Embed(title=f"__**COMMAND ERROR**__",
-                              description=f"[**GitHub**](https://github.com/shamspias/Music-Discord-Bot)\n\n**You may report this issue on the [GitHub repository](https://github.com/shamspias/Music-Discord-Bot)**\n```{error}```",
+                              description=f"[**GitHub**](https://github.com/shamspias/pommis/tree/pommisv2)\n\n**You may report this issue on the [GitHub repository](https://github.com/shamspias/pommis/tree/pommisv2)**\n```{error}```",
                               color=discord.Colour.red())
         embed.set_footer(text="Bot Created by sonic#0001")
         try:

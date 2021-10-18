@@ -43,7 +43,7 @@ class CogPlaylist(commands.Cog):
         embed.add_field(name="playlist name :", value=f"`liked`", inline=True)
         embed.add_field(name="playlist size :", value=f"`{playlistSize + 1}/25`", inline=True)
         embed.set_thumbnail(url=track.thumb)
-        embed.set_footer(text=f"Requested by {ctx.author} | Open source", icon_url=ctx.author.avatar_url)
+        embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
         await ctx.channel.send(embed=embed)
 
     @playlist.command(name="show",
@@ -72,14 +72,14 @@ class CogPlaylist(commands.Cog):
                     embedTitle = ""
 
                 embed = discord.Embed(title=embedTitle, description=message, color=discord.Colour.random())
-                embed.set_footer(text=f"Requested by {ctx.author} | Open source", icon_url=ctx.author.avatar_url)
+                embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
                 await ctx.send(embed=embed)
                 message = ""
         if len(message) > 0:
             embedTitle = "Liked Playlist :" if isFirstMessage else ""
 
             embed = discord.Embed(title=embedTitle, description=message, color=discord.Colour.random())
-            embed.set_footer(text=f"Requested by {ctx.author} | Open source", icon_url=ctx.author.avatar_url)
+            embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
 
     @playlist.command(name="remove",
@@ -104,7 +104,7 @@ class CogPlaylist(commands.Cog):
         embed = discord.Embed(title="Song removed from your playlist (liked)",
                               description=f"- **[" + playlistContent[index][2] + "](" + playlistContent[index][
                                   3] + ")**", color=discord.Colour.random())
-        embed.set_footer(text=f"Requested by {ctx.author} | Open source", icon_url=ctx.author.avatar_url)
+        embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
         await ctx.channel.send(embed=embed)
 
     @playlist.command(name="load",
