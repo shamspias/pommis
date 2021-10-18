@@ -13,7 +13,7 @@ from DataBase.Skip import DBSkip
 class Track(wavelink.Track):
     """Wavelink Track object with a requester attribute."""
 
-    __slots__ = ('requester', )
+    __slots__ = ('requester',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args)
@@ -29,7 +29,7 @@ class CogLavalinkEvents(commands.Cog, wavelink.WavelinkMixin):
     @wavelink.WavelinkMixin.listener('on_track_end')
     @wavelink.WavelinkMixin.listener('on_track_exception')
     async def on_player_stop(self, node: wavelink.Node, payload):
-           
+
         serverParameters = DBServer(self.bot.dbConnection).displayServer(payload.player.guild_id)
         isLoop = serverParameters[2]
         isLoopQueue = serverParameters[3]
@@ -46,7 +46,7 @@ class CogLavalinkEvents(commands.Cog, wavelink.WavelinkMixin):
             track = track[0]
             await channel.send(f"🔄 Looped!")
             return await playTrack(self, channel, payload.player, track, requester)
-        
+
         # If not looped
         track = DBQueue(self.bot.dbConnection).getNextSong(payload.player.guild_id)
         if track is None:
@@ -57,7 +57,7 @@ class CogLavalinkEvents(commands.Cog, wavelink.WavelinkMixin):
                 if channel:
                     await channel.send(f"{self.bot.emojiList.false} Disconnected because the queue is empty!")
                     await payload.player.disconnect()
-            return 
+            return
 
         channelID = track[3]
         channel = self.bot.get_channel(int(channelID))
@@ -85,8 +85,8 @@ class CogLavalinkEvents(commands.Cog, wavelink.WavelinkMixin):
                 duration = formerTrack[6]
 
                 # Add the former track at the end of the queue
-                DBQueue(self.bot.dbConnection).add(payload.player.guild_id, False, requester, channel.id, track, title, duration, futureIndex)
-
+                DBQueue(self.bot.dbConnection).add(payload.player.guild_id, False, requester, channel.id, track, title,
+                                                   duration, futureIndex)
 
     @wavelink.WavelinkMixin.listener()
     async def on_node_ready(self, node: wavelink.Node):
@@ -110,12 +110,12 @@ class CogLavalinkEvents(commands.Cog, wavelink.WavelinkMixin):
         #                 if track:
         #                     track = track[0]
         #                     track = Track(track.id, track.info, requester=server[2])
-                            
+
         #                     # Play the track
         #                     player = node.get_player(serverID)
         #                     if player:
         #                         await player.play(track)
 
-    
+
 def setup(bot):
     bot.add_cog(CogLavalinkEvents(bot))

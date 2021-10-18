@@ -15,6 +15,7 @@ class CogJoinLeave(commands.Cog):
 
 
     @commands.command(name = "join",
+                      aliases=["Join", "JOIN", "j", "J"],
                     usage="",
                     description = "Add the bot in your voice channel")
     @commands.guild_only()
@@ -38,6 +39,7 @@ class CogJoinLeave(commands.Cog):
         
 
     @commands.command(name = "leave",
+                    aliases=["dc", "DC", "Dc", "dC"],
                     usage="",
                     description = "Leave the bot of your voice channel")
     @commands.guild_only()

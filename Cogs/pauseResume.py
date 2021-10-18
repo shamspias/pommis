@@ -3,21 +3,22 @@ from discord.ext import commands
 
 from Tools.Check import Check
 
+
 class CogPauseResume(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-
-    @commands.command(name = "resume",
-                    usage="",
-                    description = "Resume the song.")
+    @commands.command(name="resume",
+                      aliases=["res"],
+                      usage="",
+                      description="Resume the song.")
     @commands.guild_only()
     @commands.cooldown(1, 5, commands.BucketType.member)
     async def resume(self, ctx):
 
-        if not await Check().userInVoiceChannel(ctx, self.bot): return 
-        if not await Check().botInVoiceChannel(ctx, self.bot): return 
-        if not await Check().userAndBotInSameVoiceChannel(ctx, self.bot): return 
+        if not await Check().userInVoiceChannel(ctx, self.bot): return
+        if not await Check().botInVoiceChannel(ctx, self.bot): return
+        if not await Check().userAndBotInSameVoiceChannel(ctx, self.bot): return
 
         player = self.bot.wavelink.get_player(ctx.guild.id)
 
@@ -25,19 +26,18 @@ class CogPauseResume(commands.Cog):
             await player.set_pause(False)
             return await ctx.channel.send(f"{ctx.author.mention} The song is resumed!")
         await ctx.channel.send(f"{ctx.author.mention} The song is already resumed!")
-            
 
-
-    @commands.command(name = "pause",
-                    usage="",
-                    description = "Pause the song.")
+    @commands.command(name="pause",
+                      aliases=["pas"],
+                      usage="",
+                      description="Pause the song.")
     @commands.guild_only()
     @commands.cooldown(1, 5, commands.BucketType.member)
     async def pause(self, ctx):
-        
-        if not await Check().userInVoiceChannel(ctx, self.bot): return 
-        if not await Check().botInVoiceChannel(ctx, self.bot): return 
-        if not await Check().userAndBotInSameVoiceChannel(ctx, self.bot): return 
+
+        if not await Check().userInVoiceChannel(ctx, self.bot): return
+        if not await Check().botInVoiceChannel(ctx, self.bot): return
+        if not await Check().userAndBotInSameVoiceChannel(ctx, self.bot): return
 
         player = self.bot.wavelink.get_player(ctx.guild.id)
 

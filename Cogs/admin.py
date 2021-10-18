@@ -5,20 +5,20 @@ import json
 
 from DataBase.Queue import DBQueue
 
+
 class CogAdmin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-
-    @commands.command(name = "logout",
-                    usage="",
-                    description = "Stop the bot.")
+    @commands.command(name="logout",
+                      usage="",
+                      description="Stop the bot.")
     @commands.is_owner()
     @commands.guild_only()
     @commands.cooldown(1, 5, commands.BucketType.member)
     async def logout(self, ctx):
 
-        await ctx.send(f"{self.bot.emojiList.alert} Stoping process...")
+        await ctx.send(f"{self.bot.emojiList.alert} Stopping process...")
 
         serversInQueue = DBQueue(self.bot.dbConnection).displayAllPlaying()
 
@@ -37,18 +37,18 @@ class CogAdmin(commands.Cog):
                     if player.is_playing:
                         await player.destroy()
                     await player.disconnect()
-                    await ctx.send(f"{self.bot.emojiList.true} Disconected from {player.guild_id}")
-                    print(f"Disconected from {player.guild_id}")
+                    await ctx.send(f"{self.bot.emojiList.true} Disconnected from {player.guild_id}")
+                    print(f"Disconnected from {player.guild_id}")
                 except:
-                    await ctx.send(f"{self.bot.emojiList.false} **Error :** Can't disconect from {player.guild_id}")
-                    print(f"Error : Can't disconect from {player.guild_id}")
+                    await ctx.send(f"{self.bot.emojiList.false} **Error :** Can't disconnect from {player.guild_id}")
+                    print(f"Error : Can't disconnect from {player.guild_id}")
 
             data = json.dumps(data, indent=4, ensure_ascii=False)
             logoutData.write(data)
-        
-        await ctx.send(f"{self.bot.emojiList.alert} Stoped!")
-        print(f"\n⛔⛔⛔ Stoping process... (by {ctx.author})")
-        await self.bot.logout() # Stop the bot    
+
+        await ctx.send(f"{self.bot.emojiList.alert} Stopped!")
+        print(f"\n⛔⛔⛔ Stopping process... (by {ctx.author})")
+        await self.bot.logout()  # Stop the bot
 
 
 def setup(bot):
