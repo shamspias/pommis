@@ -32,7 +32,7 @@ class CogSearch(commands.Cog):
         embed = discord.Embed(title="Search results :",
                               description=f"choose the number that corresponds to the music.\nWrite `0` to pass the cooldown.\n\n{message}",
                               color=discord.Colour.random())
-        embed.set_footer(text=f"Requested by {ctx.author} | Open source", icon_url=ctx.author.avatar_url)
+        embed.set_footer(text=f"Requested by {ctx.author} |  {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
 
