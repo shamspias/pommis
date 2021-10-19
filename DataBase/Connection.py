@@ -15,7 +15,7 @@ class DBConnection:
 
         self.MySQLHost = data["MySQLHost"]
         self.MySQLLogin = data["MySQLLogin"]
-        self.MySQLPassword = data["MySQLPasword"]
+        self.MySQLPassword = data["MySQLPassword"]
         self.MySQLDatabase = data["MySQLDatabase"]
 
             # self.poolConnection =  mysql.connector.pooling.MySQLConnectionPool(

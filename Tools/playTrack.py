@@ -5,10 +5,11 @@ from Tools.sendPlayingSongEmbed import sendPlayingSongEmbed
 
 from DataBase.Queue import DBQueue
 
+
 class Track(wavelink.Track):
     """Wavelink Track object with a requester attribute."""
 
-    __slots__ = ('requester', )
+    __slots__ = ('requester',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args)
@@ -31,6 +32,6 @@ async def playTrack(self, channel, player, track, requester):
     track = Track(track.id, track.info, requester=requester)
 
     await player.play(track)
-    
+
     # Send the embed
     await sendPlayingSongEmbed(self, channel, track)

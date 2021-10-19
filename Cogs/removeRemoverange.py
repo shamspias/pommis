@@ -12,6 +12,7 @@ class CogRemoveRemoverange(commands.Cog):
         self.bot = bot
 
     @commands.command(name="remove",
+                      aliases=["r"],
                       usage="<Index>",
                       description="Remove the song with its index.")
     @commands.guild_only()
@@ -25,8 +26,8 @@ class CogRemoveRemoverange(commands.Cog):
         if not index.isdigit():
             return await ctx.channel.send(
                 f"{self.bot.emojiList.false} {ctx.author.mention} The index have to be a number!")
-        if (int(index) - 1) > len(self.bot.music[ctx.guild.id]["musics"]):
-            return await ctx.channel.send(f"{self.bot.emojiList.false} {ctx.author.mention} The index is invalid!")
+        # if (int(index) - 1) > len(self.bot.music[ctx.guild.id]["musics"]):
+        #     return await ctx.channel.send(f"{self.bot.emojiList.false} {ctx.author.mention} The index is invalid!")
 
         tracks = DBQueue(self.bot.dbConnection).display(ctx.guild.id)
 
@@ -39,7 +40,8 @@ class CogRemoveRemoverange(commands.Cog):
         # Remove
         DBQueue(self.bot.dbConnection).remove(ctx.guild.id, index)
 
-        track = tracks[index]
+
+        track = tracks[index-2]
         trackDuration = await Utils().durationFormat(track[6])
         trackTitle = track[5].replace("*", "\\*")
         trackUrl = track[4]
@@ -47,7 +49,7 @@ class CogRemoveRemoverange(commands.Cog):
         embed = discord.Embed(title="Song Removed in the queue",
                               description=f"Song removed : **[{trackTitle}]({trackUrl})** ({trackDuration})",
                               color=discord.Colour.random())
-        embed.set_footer(text=f"Requested by {ctx.author} | Open source", icon_url=ctx.author.avatar_url)
+        embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
         await ctx.channel.send(embed=embed)
 
     # @commands.command(name = "removerange",

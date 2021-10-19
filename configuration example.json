@@ -1,6 +1,6 @@
 {
     "token": "",
-    "prefix": "?",
+    "prefix": "-",
     
     "playlistLimit": "15",
     
@@ -18,6 +18,6 @@
 
     "MySQLHost": "",
     "MySQLLogin": "",
-    "MySQLPasword": "",
+    "MySQLPassword": "",
     "MySQLDatabase": ""
 }

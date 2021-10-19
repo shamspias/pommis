@@ -13,11 +13,11 @@
     "lavalinkPort": 2333,
     "lavalinkRestUri": "http://lavalink:2333",
     "lavalinkPassword": "youshallnotpass",
-    "lavalinkIdentifier": "BetterMusic",
-    "lavalinkRegion": "us_central",
+    "lavalinkIdentifier": "BotBaba",
+    "lavalinkRegion": "asia",
   
     "MySQLHost": "db",
     "MySQLLogin": "root",
-    "MySQLPasword": "securePassword123",
-    "MySQLDatabase": "BetterMusic"
+    "MySQLPassword": "securePassword123",
+    "MySQLDatabase": "BotBaba"
 }

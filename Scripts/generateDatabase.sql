@@ -7,8 +7,8 @@
 
 
 -- Listage de la structure de la base pour BetterMusic
-CREATE DATABASE IF NOT EXISTS `BetterMusic` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-USE `BetterMusic`;
+CREATE DATABASE IF NOT EXISTS `BotBaba` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `BotBaba`;
 
 -- Listage de la structure de la table BetterMusic. playlist
 CREATE TABLE IF NOT EXISTS `playlist` (

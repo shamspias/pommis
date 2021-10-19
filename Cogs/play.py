@@ -232,7 +232,7 @@ class CogPlay(commands.Cog):
             print(f"Playlist limit set to {self.playlistLimit}")
 
     @commands.command(name="play",
-                      aliases=["p"],
+                      aliases=["p", "P"],
                       usage="<Link/Query>",
                       description="The bot searches and plays the music.")
     @commands.guild_only()
