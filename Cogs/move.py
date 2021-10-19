@@ -61,7 +61,7 @@ class CogMove(commands.Cog):
                                            trackToMove[4], trackToMove[5], trackToMove[6], indexTo)
 
         embed = discord.Embed(title="Song moved",
-                              description=f"- [**{trackToMove.title}**]({trackToMove.uri}) was moved from `{indexFromFake}` to `{indexToFake}`.",
+                              description=f"- [**{trackToMove[5]}**]({trackToMove[4]}) was moved from `{indexFromFake}` to `{indexToFake}`.",
                               color=discord.Colour.random())
         embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
         await ctx.channel.send(embed=embed)

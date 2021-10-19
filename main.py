@@ -5,7 +5,7 @@ import discord
 import wavelink
 import os
 import json
-import tekore # Spotify
+import tekore  # Spotify
 
 from discord.ext import commands
 
@@ -24,6 +24,7 @@ class createEmojiList:
         self.false = emojiList["False"]
         self.alert = emojiList["Alert"]
 
+
 class createLavalink:
     def __init__(self):
         with open("configuration.json", "r") as config:
@@ -36,10 +37,12 @@ class createLavalink:
         self.identifier = data["lavalinkIdentifier"]
         self.region = data["lavalinkRegion"]
 
+
 class Greetings(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self._last_member = None
+
 
 with open("configuration.json", "r") as config:
     data = json.load(config)
@@ -51,7 +54,6 @@ with open("configuration.json", "r") as config:
 
     dblToken = data["dblToken"]
 
-
 with open("emojis.json", "r") as emojiList:
     emojiList = json.load(emojiList)
     emojiList = {
@@ -61,12 +63,11 @@ with open("emojis.json", "r") as emojiList:
         "DeezerLogo": emojiList["DeezerLogo"],
         "True": emojiList["True"],
         "False": emojiList["False"],
-        "Alert": emojiList["Alert"] 
+        "Alert": emojiList["Alert"]
     }
 
-
 intents = discord.Intents.default()
-bot = commands.Bot(prefix, intents = intents)
+bot = commands.Bot(prefix, intents=intents)
 
 # Spotify
 if (spotifyClientId != ""):
@@ -83,7 +84,7 @@ bot.dblToken = dblToken
 bot.emojiList = createEmojiList(emojiList)
 
 # Help
-bot.remove_command("help") # To create a personal help command 
+bot.remove_command("help")  # To create a personal help command
 
 # Database
 bot.dbConnection = DBConnection()
@@ -94,10 +95,12 @@ if __name__ == '__main__':
         if filename.endswith(".py"):
             bot.load_extension(f"Cogs.{filename[:-3]}")
 
+
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name =f"{bot.command_prefix}help"))
-    
+    await bot.change_presence(
+        activity=discord.Activity(type=discord.ActivityType.watching, name=f"{bot.command_prefix}help"))
+
     # Check if each server is in the DB
     print("Database check")
     servers = DBServer(bot.dbConnection).display()
@@ -107,10 +110,11 @@ async def on_ready():
         if guild.id not in serversId:
             DBServer(bot.dbConnection).add(guild.id, "?", False, False, "")
             print(f"* {guild.name} ({guild.id}) added")
-    
+
     print("----------------------------")
     print(f'We have logged in as {bot.user}')
     print(discord.__version__)
 
-# ------------------------ RUN ------------------------ # 
+
+# ------------------------ RUN ------------------------ #
 bot.run(token)
