@@ -36,9 +36,9 @@ class CogStats(commands.Cog):
                         value=f"`Python : v{platform.python_version()}\nDiscord.py : v{discord.__version__}`",
                         inline=True)
         embed.add_field(name="RAM :", value=f"`Used : {psutil.virtual_memory().percent}%`", inline=True)
-        embed.add_field(name="Ping :", value=f"`Ping Rate : {round(self.bot.latency * 1000)}ms`", inline=False)
+        embed.add_field(name="Ping :", value=f"` {round(self.bot.latency * 1000)}ms`", inline=False)
         embed.add_field(name="Music :", value=f"Playing music on `{playingServerCount}` servers", inline=False)
-        embed.set_footer(text=f"Requested by {ctx.author} | Open source", icon_url=ctx.author.avatar_url)
+        embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
 

@@ -13,8 +13,8 @@
     "lavalinkPort": 2333,
     "lavalinkRestUri": "http://127.0.0.1:2333",
     "lavalinkPassword": "",
-    "lavalinkIdentifier": "BetterMusic",
-    "lavalinkRegion": "us_central",
+    "lavalinkIdentifier": "Pommis",
+    "lavalinkRegion": "asia",
 
     "MySQLHost": "",
     "MySQLLogin": "",
