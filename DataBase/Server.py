@@ -2,10 +2,11 @@ import mysql.connector
 
 from DataBase.Connection import DBConnection
 
+
 class DBServer:
 
     def __init__(self, dbConnection):
-        self.dbConnection  = dbConnection
+        self.dbConnection = dbConnection
 
     def add(self, server, prefix, loop, loopQueue, djRole):
         """Add a server"""
@@ -17,18 +18,18 @@ class DBServer:
         mydb.commit()
         mycursor.close()
         mydb.close()
-        
+
     def remove(self, server):
         """Remove a server"""
         mydb = self.dbConnection.getConnection()
         mycursor = mydb.cursor()
         query = f"DELETE FROM `server` WHERE `server`= %s LIMIT 1;"
-        val = (str(server), )
+        val = (str(server),)
         mycursor.execute(query, val)
         mydb.commit()
         mycursor.close()
         mydb.close()
-        
+
     def clearMusicParameters(self, server, loop, loopQueue):
         """Set the track to isPLaying"""
         mydb = self.dbConnection.getConnection()
@@ -39,7 +40,7 @@ class DBServer:
         mydb.commit()
         mycursor.close()
         mydb.close()
-        
+
     def display(self):
         """Return the content of servers"""
         mydb = self.dbConnection.getConnection()
@@ -50,19 +51,19 @@ class DBServer:
         mycursor.close()
         mydb.close()
         return result
-    
+
     def displayServer(self, server):
         """Return the content of servers"""
         mydb = self.dbConnection.getConnection()
         mycursor = mydb.cursor()
         query = f"SELECT * FROM `server` WHERE `server`= %s;"
-        val = (str(server), )
+        val = (str(server),)
         mycursor.execute(query, val)
         result = mycursor.fetchall()
         mycursor.close()
         mydb.close()
         return result[0]
-    
+
     def updateLoop(self, server, loop):
         """Set the track to isPLaying"""
         mydb = self.dbConnection.getConnection()
@@ -73,7 +74,7 @@ class DBServer:
         mydb.commit()
         mycursor.close()
         mydb.close()
-    
+
     def updateLoopQueue(self, server, loopQueue):
         """Set the track to isPLaying"""
         mydb = self.dbConnection.getConnection()
@@ -84,4 +85,14 @@ class DBServer:
         mydb.commit()
         mycursor.close()
         mydb.close()
-        
+
+    def change_prefix(self, new_prefix, server_id):
+        """Change Prefix from server"""
+        mydb = self.dbConnection.getConnection()
+        mycursor = mydb.cursor()
+        query = f"UPDATE `server` set prefix = %s where `server`= %s;"
+        val = (str(new_prefix), server_id)
+        mycursor.execute(query, val)
+        mydb.commit()
+        mycursor.close()
+        mydb.close()
