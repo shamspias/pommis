@@ -40,8 +40,7 @@ class CogRemoveRemoverange(commands.Cog):
         # Remove
         DBQueue(self.bot.dbConnection).remove(ctx.guild.id, index)
 
-
-        track = tracks[index-2]
+        track = tracks[index - 2]
         trackDuration = await Utils().durationFormat(track[6])
         trackTitle = track[5].replace("*", "\\*")
         trackUrl = track[4]

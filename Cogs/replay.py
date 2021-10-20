@@ -47,7 +47,7 @@ class CogReplay(commands.Cog):
         embed = discord.Embed(title="Replay",
                               description=f"New song added : **[{trackTitle}]({trackUri})** ({trackDuration})",
                               color=discord.Colour.random())
-        embed.set_footer(text=f"Requested by {ctx.author} | Open source", icon_url=ctx.author.avatar_url)
+        embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
         await ctx.channel.send(embed=embed)
 
 
