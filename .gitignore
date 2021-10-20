@@ -3,3 +3,7 @@ Cogs/__pycache__/
 configuration.json
 logs.log
 logoutData.json
+
+/venv
+
+venv

@@ -1,13 +1,9 @@
-<img src="https://github.com/Darkempire78/Music-Discord-Bot/blob/main/Assets/Banner.png"/>
+<img src="https://github.com/shamspias/pommis/blob/pommisv2/Assets/Banner.png"/>
 
-![](https://img.shields.io/codefactor/grade/github/Darkempire78/Music-Discord-Bot?style=for-the-badge) ![](https://img.shields.io/github/repo-size/Darkempire78/Music-Discord-Bot?style=for-the-badge) ![](https://img.shields.io/badge/SOURCERY-ENABLED-green?style=for-the-badge) <a href="https://discord.com/invite/sPvJmY7mcV"><img src="https://img.shields.io/discord/831524351311609907?color=%237289DA&label=DISCORD&style=for-the-badge"></a>
 
-* **INVITE :** https://top.gg/bot/796749718217555978
-* **SUPPORT SERVER :** https://discord.com/invite/sPvJmY7mcV
+# Pommis Music bot for Discord
 
-# Music Discord Bot
-
-A Discord bot with more than 30+ commands which allows to play music on your server efficiently. Supports Youtube, Spotify, Deezer and Soundcloud links.
+A Discord bot with more than 30 + commands which allows playing music on your server efficiently. Supports YouTube, Spotify, Deezer and Soundcloud links.
 
 ## Installation
 
@@ -81,9 +77,7 @@ Finally, host the bot and invite it to your own server.
 
 ## Preview
 
-<img src="https://github.com/Darkempire78/Music-Discord-Bot/blob/main/Assets/capture1.png" width="600"/>
-
-<img src="https://github.com/Darkempire78/Music-Discord-Bot/blob/main/Assets/capture2.png" width="600"/>
+<img src="https://github.com/shamspias/pommis/blob/pommisv2/Assets/capture1.png" width="600"/>
 
 
 ## Commands
@@ -123,34 +117,12 @@ Finally, host the bot and invite it to your own server.
 ?logout : Stop the bot process.
 ```
 
-[![Discord Bots](https://top.gg/api/widget/796749718217555978.svg)](https://top.gg/bot/796749718217555978)
 
 
-## Soon
 
-**Project :** https://github.com/Darkempire78/Music-Discord-Bot/projects/2
-
-## Discord
-
-Join the Discord server !
-
-[![](https://i.imgur.com/UfyvtOL.png)](https://discord.gg/sPvJmY7mcV)
 
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
-
-
-## License
-
-This project is under [GPLv3](https://github.com/Darkempire78/Raid-Protect-Discord-Bot/blob/master/LICENSE).
-
-
-# Advice :
-
-You should use [Discord Tools](https://marketplace.visualstudio.com/items?itemName=Darkempire78.discord-tools) to code your Discord bots on Visual Studio Code easier.
-Works for Python (Discord.py), Javascript (Discord.js) and Java (JDA). Generate template bot and code (snippets).
-- **Download :** https://marketplace.visualstudio.com/items?itemName=Darkempire78.discord-tools
-- **Repository :** https://github.com/Darkempire78/Discord-Tools
