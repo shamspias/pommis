@@ -1,4 +1,4 @@
-<img src="https://github.com/shamspias/pommis/blob/pommisv2/Assets/Banner.png"/>
+<img src="https://github.com/shamspias/pommis/blob/pommisv2/Assets/Banner-pommis.png"/>
 
 
 # Pommis Music bot for Discord
