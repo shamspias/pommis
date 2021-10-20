@@ -90,8 +90,8 @@ class DBServer:
         """Change Prefix from server"""
         mydb = self.dbConnection.getConnection()
         mycursor = mydb.cursor()
-        query = f"UPDATE `server` set prefix = %s where `server`= %s;"
-        val = (str(new_prefix), server_id)
+        query = f"UPDATE `server` set `prefix` = %s where `server` = %s;"
+        val = (new_prefix, server_id)
         mycursor.execute(query, val)
         mydb.commit()
         mycursor.close()

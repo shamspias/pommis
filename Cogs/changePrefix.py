@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-
+from DataBase.Server import DBServer
 from Tools.Check import Check
 
 
@@ -16,6 +16,8 @@ class CogChangePrefix(commands.Cog):
     @commands.guild_only()
     @commands.cooldown(1, 5, commands.BucketType.member)
     async def change_prefix(self, ctx):
+        DBServer(self.bot.dbConnection).change_prefix('+', ctx.guild.id)
+
         await ctx.send(f"{ctx.author.mention} Current Prefix of this server changed!")
 
 

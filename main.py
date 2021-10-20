@@ -104,11 +104,10 @@ async def on_ready():
     # Check if each server is in the DB
     print("Database check")
     servers = DBServer(bot.dbConnection).display()
-    servers = DBServer(bot.dbConnection).display()
     serversId = [int(i[0]) for i in servers]
     for guild in bot.guilds:
         if guild.id not in serversId:
-            DBServer(bot.dbConnection).add(guild.id, "?", False, False, "")
+            DBServer(bot.dbConnection).add(guild.id, prefix, False, False, "")
             print(f"* {guild.name} ({guild.id}) added")
 
     print("----------------------------")

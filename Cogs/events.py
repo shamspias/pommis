@@ -114,7 +114,7 @@ class EventsCog(commands.Cog, name="EventsCog"):
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
 
-        DBServer(self.bot.dbConnection).add(guild.id, "?", False, False, "")
+        DBServer(self.bot.dbConnection).add(guild.id, "-", False, False, "")
 
         # Print the log on the support server
         channel = self.bot.get_channel(799998669926563860)
