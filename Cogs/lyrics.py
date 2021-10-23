@@ -3,13 +3,15 @@ from discord.ext import commands
 
 from Tools.Check import Check
 
-import ksoftapi
-import json
+import aiohttp
+import datetime as dt
 
 
 class CogLyrics(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+    LYRICS_URL = "https://some-random-api.ml/lyrics?title="
 
     @commands.command(name="lyrics",
                       aliases=["lyric", "Lyric"],
@@ -25,28 +27,27 @@ class CogLyrics(commands.Cog):
         if not await Check().botInVoiceChannel(ctx, self.bot): return
         if not await Check().userAndBotInSameVoiceChannel(ctx, self.bot): return
 
-        with open("configuration.json", "r") as config:
-            data = json.load(config)
-            apikey = data["lyricsApi"]
+        name = player.current.title.replace("*", "\\*")
 
-        query = player.current.title.replace("*", "\\*")
+        async with ctx.typing():
+            async with aiohttp.request("GET", self.LYRICS_URL + name, headers={}) as r:
+                if not 200 <= r.status <= 299:
+                    return await ctx.send("Lyrics Not Found!")
 
-        kclient = ksoftapi.Client(apikey)
+                data = await r.json()
 
-        try:
-            results = await kclient.music.lyrics(query)
-        except ksoftapi.NoResults:
-            print('No lyrics found for ' + query)
-        else:
-            first = results[0]
-            print(first)
-            print("----------------")
-            print(first.lyrics)
-            embed = discord.Embed(title=f"** [{query}] **", description=f"**[{first.lyrics}]**",
-                                  color=discord.Colour.random())
-            await ctx.send(embed=embed)
+                if len(data["lyrics"]) > 2000:
+                    return await ctx.send(f"<{data['links']['genius']}>")
 
-        await ctx.send(f"{ctx.author.mention} Lyrics for Current music!")
+                embed = discord.Embed(
+                    title=data["title"],
+                    description=data["lyrics"],
+                    colour=ctx.author.colour,
+                    timestamp=dt.datetime.utcnow(),
+                )
+                embed.set_thumbnail(url=data["thumbnail"]["genius"])
+                embed.set_author(name=data["author"])
+                await ctx.send(embed=embed)
 
 
 def setup(bot):

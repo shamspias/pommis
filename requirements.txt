@@ -7,4 +7,3 @@ dblpy==0.4.0
 wavelink==0.9.10
 youtube-search-python==1.4.9
 psutil==5.8.0
-ksoftapi==0.4.1
