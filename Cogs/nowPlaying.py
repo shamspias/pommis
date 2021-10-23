@@ -8,13 +8,13 @@ class CogNowPlaying(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="nowplaying",
+    @commands.command(name="now_playing",
                       aliases=["np", "now", "playing"],
                       usage="",
                       description="Display the current song!")
     @commands.guild_only()
     @commands.cooldown(1, 2, commands.BucketType.member)
-    async def nowplaying(self, ctx):
+    async def now_playing(self, ctx):
         player = self.bot.wavelink.get_player(ctx.guild.id)
 
         if not player.is_playing:

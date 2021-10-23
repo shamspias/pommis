@@ -32,6 +32,10 @@ async def sendPlayingSongEmbed(self, channel, track):
     isLoop = str(DBServer(self.bot.dbConnection).displayServer(channel.guild.id)[2])
     isLoopQueue = str(DBServer(self.bot.dbConnection).displayServer(channel.guild.id)[3])
 
+    # Position
+    position = divmod(player.position, 60000)
+    length = divmod(player.current.length, 60000)
+
     # Embed
     embed = discord.Embed(title="Playing Song :", description=f"**[{trackTitle}]({track.uri})**",
                           color=discord.Colour.random())
@@ -49,4 +53,10 @@ async def sendPlayingSongEmbed(self, channel, track):
     embed.add_field(name="Lyrics :", value=f"`{self.bot.command_prefix}lyrics`", inline=True)
     embed.add_field(name="Queue :", value=f"`{queueSize} song(s) ({queueDuration})`", inline=True)
     embed.add_field(name="DJ Role :", value=f"`@role`", inline=True)
+
+    embed.add_field(
+        name="Position",
+        value=f"{int(position[0])}:{round(position[1] / 1000):02}/{int(length[0])}:{round(length[1] / 1000):02}",
+        inline=False
+    )
     await channel.send(embed=embed)

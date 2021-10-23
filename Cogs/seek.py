@@ -10,7 +10,7 @@ class CogSeek(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="seeks",
+    @commands.command(name="seek",
                       aliases=["seeks", "jump"],
                       usage="",
                       description="Seek the current music.")
@@ -34,7 +34,11 @@ class CogSeek(commands.Cog):
         player = self.bot.wavelink.get_player(ctx.guild.id)
         await player.seek(secs * 1000)  # seek the song with second
 
-        await ctx.send(f"{ctx.author.mention} Current music Seeked!")
+        position = divmod(player.position, 60000)
+        length = divmod(player.current.length, 60000)
+
+        await ctx.send(
+            f"{ctx.author.mention} Current music Seeked to {int(position[0])}:{round(position[1] / 1000):02}/{int(length[0])}:{round(length[1] / 1000):02}")
 
 
 def setup(bot):
