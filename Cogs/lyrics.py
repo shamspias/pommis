@@ -4,7 +4,7 @@ from discord.ext import commands
 from Tools.Check import Check
 
 import ksoftapi
-
+import json
 
 class CogLyrics(commands.Cog):
     def __init__(self, bot):
@@ -24,9 +24,13 @@ class CogLyrics(commands.Cog):
         if not await Check().botInVoiceChannel(ctx, self.bot): return
         if not await Check().userAndBotInSameVoiceChannel(ctx, self.bot): return
 
-        query = player.current.track.title.replace("*", "\\*")
+        query = player.current.title.replace("*", "\\*")
 
-        kclient = ksoftapi.Client('AIzaSyAAg3GHxipuyDz7KsCAv434yoFT56TR9LQ')
+        with open("configuration.json", "r") as config:
+            data = json.load(config)
+            apikey = data["lyricsApi"]
+
+        kclient = ksoftapi.Client(apikey)
 
         try:
             results = await kclient.music.lyrics(query)
