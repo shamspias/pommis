@@ -10,13 +10,13 @@ class CogSeek(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="seek",
-                      aliases=["seek", "jump"],
+    @commands.command(name="seeks",
+                      aliases=["seeks", "jump"],
                       usage="",
                       description="Seek the current music.")
     @commands.guild_only()
     @commands.cooldown(1, 5, commands.BucketType.member)
-    async def seek(self, ctx, position: str):
+    async def seek_new(self, ctx, position: str):
 
         if not await Check().userInVoiceChannel(ctx, self.bot): return
         if not await Check().botInVoiceChannel(ctx, self.bot): return

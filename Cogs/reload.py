@@ -4,7 +4,7 @@ from discord.ext import commands
 from Tools.Check import Check
 
 
-class CogReaload(commands.Cog):
+class CogReload(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -14,7 +14,7 @@ class CogReaload(commands.Cog):
                       description="Reload the current music.")
     @commands.guild_only()
     @commands.cooldown(1, 5, commands.BucketType.member)
-    async def skip(self, ctx):
+    async def reload(self, ctx):
 
         if not await Check().userInVoiceChannel(ctx, self.bot): return
         if not await Check().botInVoiceChannel(ctx, self.bot): return
@@ -27,4 +27,4 @@ class CogReaload(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(CogReaload(bot))
+    bot.add_cog(CogReload(bot))
