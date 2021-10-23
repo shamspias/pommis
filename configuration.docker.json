@@ -2,6 +2,8 @@
     "token": "",
     "prefix": "?",
 
+    "lyricsApi": "",
+
     "playlistLimit": "15",   
  
     "spotifyClientId": "",
