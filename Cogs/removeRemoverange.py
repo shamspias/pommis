@@ -38,8 +38,11 @@ class CogRemoveRemoverange(commands.Cog):
         index = DBQueue(self.bot.dbConnection).getIndexFromFakeIndex(ctx.guild.id, index - 1)
 
         # Remove
-        DBQueue(self.bot.dbConnection).remove(ctx.guild.id, index)
-
+        try:
+            DBQueue(self.bot.dbConnection).remove(ctx.guild.id, index)
+        except:
+            await ctx.channel.send("Already Deleted or Enter valade Index")
+            
         if index <= 1:
             index = 2
 

@@ -190,7 +190,7 @@ async def searchQuery(self, ctx, args):
 
 async def searchPlaylist(self, ctx, args):
     """Get YouTube links from a playlist link."""
-    await ctx.send("<:YouTubeLogo:798492404587954176> Searching...", delete_after=10)
+    await ctx.send("Searching...", delete_after=10)
     videoCount = int(PlaylistsSearch(args, limit=1).result()["result"][0]["videoCount"])
     if videoCount == 0:
         await noResultFound(self, ctx)
@@ -198,7 +198,7 @@ async def searchPlaylist(self, ctx, args):
     if self.playlistLimit != 0 and videoCount > self.playlistLimit:
         await playlistTooLarge(self, ctx)
         return None
-    await ctx.send("<:YouTubeLogo:798492404587954176> Loading... (This process can take several seconds)",
+    await ctx.send("Loading... (This process can take several seconds)",
                    delete_after=60)
 
     tracks = await self.bot.wavelink.get_tracks(args)
@@ -227,7 +227,7 @@ class CogPlay(commands.Cog):
         self.bot = bot
         with open("configuration.json", "r") as config:
             data = json.load(config)
-            self.playlistLimit = int(data.get("playlistLimit", 15))
+            self.playlistLimit = int(data.get("playlistLimit", 100))
             # 0 is nolimit
             print(f"Playlist limit set to {self.playlistLimit}")
 
@@ -271,7 +271,7 @@ class CogPlay(commands.Cog):
 
         # YouTube video
         elif args.startswith("https://www.youtube.com/watch"):
-            await ctx.send("<:YouTubeLogo:798492404587954176> Searching...", delete_after=10)
+            await ctx.send(" Searching...", delete_after=10)
             # Check if the link exists
             track = await self.bot.wavelink.get_tracks(args)
             args = track[0]
