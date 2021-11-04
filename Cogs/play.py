@@ -236,7 +236,6 @@ class CogPlay(commands.Cog):
                       usage="<Link/Query>",
                       description="The bot searches and plays the music.")
     @commands.guild_only()
-    @commands.cooldown(1, 5, commands.BucketType.member)
     async def play(self, ctx, *args):
 
         if not await Check().userInVoiceChannel(ctx, self.bot): return

@@ -44,6 +44,18 @@ class DBPlaylist:
         mydb.close()
         return result
     
+    def display_playlist_names(self, user_id):
+        """Return the content of a user's playlist names"""
+        mydb = self.dbConnection.getConnection()
+        mycursor = mydb.cursor()
+        query = f"SELECT name FROM `playlist` WHERE user = %s or name = %s;"
+        val = (str(user_id), "Mr Pom Is Alive")
+        mycursor.execute(query, val)
+        result = mycursor.fetchall()
+        mycursor.close()
+        mydb.close()
+        return result
+
     def remove(self, user, name, link):
         """Remove a song in a playlist"""
         mydb = self.dbConnection.getConnection()
@@ -54,4 +66,14 @@ class DBPlaylist:
         mydb.commit()
         mycursor.close()
         mydb.close()
-        
+    
+    def remove_playlist(self, user, name):
+        """Remove a playlist"""
+        mydb = self.dbConnection.getConnection()
+        mycursor = mydb.cursor()
+        query = f"DELETE FROM playlist WHERE user=%s AND name=%s;"
+        val = (str(user), name)
+        mycursor.execute(query, val)
+        mydb.commit()
+        mycursor.close()
+        mydb.close()

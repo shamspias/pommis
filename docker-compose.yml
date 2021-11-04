@@ -7,7 +7,7 @@ services:
     restart: always
     environment:
       # this should match the mysqlPassword entry in the configuration.docker.json file
-      MYSQL_ROOT_PASSWORD: securePassword123
+      MYSQL_ROOT_PASSWORD: testtesttest
     volumes:
       - sql-data:/var/lib/mysql
       - ./Scripts:/docker-entrypoint-initdb.d
