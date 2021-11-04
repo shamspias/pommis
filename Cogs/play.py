@@ -175,14 +175,14 @@ async def searchQuery(self, ctx, args):
                 return message.content
 
     try:
-        msg = await self.bot.wait_for('message', timeout=15.0, check=check)
+        msg = await self.bot.wait_for('message', timeout=30.0, check=check)
         if int(msg.content) == 0:
             await ctx.send(f"{ctx.author.mention} Search exit!")
             return None
         return tracks[int(msg.content) - 1]
     except asyncio.TimeoutError:
         embed = discord.Embed(title=f"**TIME IS OUT**",
-                              description=f"{self.bot.emojiList.false} {ctx.author.mention} You exceeded the response time (15s)",
+                              description=f"{self.bot.emojiList.false} {ctx.author.mention} You exceeded the response time (30s)",
                               color=discord.Colour.red())
         await ctx.channel.send(embed=embed)
         return None

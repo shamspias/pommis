@@ -27,7 +27,7 @@ class CogPlaylist(commands.Cog):
         pass
     
     @playlist.command(name="display",
-                      aliases=["dis", "spl", "dpl"],
+                      aliases=["dis", "spl", "dpl", "view", "v", "V", "View"],
                       usage="",
                       description="Show your playlist")
     @commands.guild_only()
@@ -189,11 +189,11 @@ class CogPlaylist(commands.Cog):
     ### End Add To Playlist ###
 
     @playlist.command(name="show",
-                      aliases=["view"],
+                      aliases=["shows"],
                       usage="",
                       description="Show your playlist")
     @commands.guild_only()
-    @commands.cooldown(1, 5, commands.BucketType.member)
+    
     async def playlist_show(self, ctx, pl_name):
         playlistContent = DBPlaylist(self.bot.dbConnection).display(ctx.author.id, pl_name)  # Request
 
@@ -229,7 +229,7 @@ class CogPlaylist(commands.Cog):
                       usage="<Index>",
                       description="Remove a song of your playlist")
     @commands.guild_only()
-    @commands.cooldown(1, 5, commands.BucketType.member)
+    
     async def playlist_remove(self, ctx, pl_name, index):
 
         index = int(index) - 1
@@ -258,7 +258,7 @@ class CogPlaylist(commands.Cog):
                       usage="",
                       description="Load all songs of your playlist in the queue")
     @commands.guild_only()
-    @commands.cooldown(1, 30, commands.BucketType.member)
+
     async def playlist_load(self, ctx, pl_name):
 
         playlistContent = DBPlaylist(self.bot.dbConnection).display(ctx.author.id, pl_name)  # Request
@@ -274,7 +274,7 @@ class CogPlaylist(commands.Cog):
     #                   usage="<IndexFrom> <IndexTo>",
     #                   description="Move a song in the playlist.")
     # @commands.guild_only()
-    # @commands.cooldown(1, 5, commands.BucketType.member)
+    # 
     # async def move(self, ctx, pl_name, indexFrom, indexTo):
 
     #     try:
