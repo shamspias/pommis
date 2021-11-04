@@ -5,6 +5,7 @@ import json
 from youtubesearchpython import Video, ResultMode
 
 from DataBase.Playlist import DBPlaylist
+from DataBase.Queue import DBQueue
 
 from Tools.addTrack import addTrack
 
@@ -12,13 +13,9 @@ from Cogs.play import (
     searchSpotifyTrack,
     searchSpotifyPlaylist,
     searchDeezer,
-    searchDeezerTrack,
-    searchDeezerPlaylist,
     searchSoundcloud,
     searchQuery,
     searchPlaylist,
-    playlistTooLarge,
-    noResultFound
 )
 
 class CogPlaylist(commands.Cog):
@@ -271,6 +268,70 @@ class CogPlaylist(commands.Cog):
 
         links = [i[3] for i in playlistContent]
         await addTrack(self, ctx, links)
+
+    
+    # @commands.command(name="move",
+    #                   usage="<IndexFrom> <IndexTo>",
+    #                   description="Move a song in the playlist.")
+    # @commands.guild_only()
+    # @commands.cooldown(1, 5, commands.BucketType.member)
+    # async def move(self, ctx, pl_name, indexFrom, indexTo):
+
+    #     try:
+    #         tracks = DBQueue(self.bot.dbConnection).display(ctx.guild.id)
+    #         tracksCount = len(tracks)
+    #         if len(tracks) == 0:
+    #             return await ctx.channel.send(f"{self.bot.emojiList.false} {ctx.author.mention} The queue is empty!")
+    #     except:
+    #         await ctx.send("Problem with track")
+
+    #     if not indexFrom.isdigit() or not indexTo.isdigit():
+    #         return await ctx.channel.send(f"{self.bot.emojiList.false}{ctx.author.mention} Index have to be a number!")
+    #     if ((int(indexFrom)) > tracksCount) or ((int(indexTo)) > tracksCount):
+    #         return await ctx.channel.send(f"{self.bot.emojiList.false} {ctx.author.mention} Index is invalid!")
+    #     if (int(indexFrom) == int(indexTo)):
+    #         return await ctx.channel.send(
+    #             f"{self.bot.emojiList.false} {ctx.author.mention} Indexes cannot be the same!")
+
+    #     indexFromFake = int(indexFrom)
+    #     indexToFake = int(indexTo)
+
+    #     # Get real index 
+    #     try:
+    #         indexFrom = DBQueue(self.bot.dbConnection).getIndexFromFakeIndex(ctx.guild.id, indexFromFake - 1)
+    #         indexTo = DBQueue(self.bot.dbConnection).getIndexFromFakeIndex(ctx.guild.id, indexToFake - 1)
+    #     except:
+    #         await ctx.send("Problem with getting real Index")
+
+    #     # Get the track to move
+    #     try:
+    #         trackToMove = DBQueue(self.bot.dbConnection).displaySpecific(ctx.guild.id, indexFrom)
+    #         indexFrom = trackToMove[7]
+    #     except:
+    #         await ctx.send("problem with track move")
+
+    #     # Delete the track to move
+    #     try:
+    #         DBQueue(self.bot.dbConnection).remove(ctx.guild.id, indexFrom)
+    #     except:
+    #         await ctx.send("Problem with delete old track")
+
+    #     if indexFrom < indexTo:
+    #         # -1 to each track between trackToMove index and 
+    #         DBQueue(self.bot.dbConnection).updateRemoveOneToEach(ctx.guild.id, indexFrom, indexTo)
+    #     else:
+    #         # +1 to each track between trackToMove index and 
+    #         DBQueue(self.bot.dbConnection).updateAddOneToEach(ctx.guild.id, indexFrom, indexTo)
+
+    #     # Re-create the track
+    #     DBQueue(self.bot.dbConnection).add(trackToMove[0], trackToMove[1], trackToMove[2], trackToMove[3],
+    #                                        trackToMove[4], trackToMove[5], trackToMove[6], indexTo)
+
+    #     embed = discord.Embed(title="Song moved",
+    #                           description=f"- [**{trackToMove[5]}**]({trackToMove[4]}) was moved from `{indexFromFake}` to `{indexToFake}`.",
+    #                           color=discord.Colour.random())
+    #     embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
+    #     await ctx.channel.send(embed=embed)
 
 
 def setup(bot):
