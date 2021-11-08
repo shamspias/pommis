@@ -17,7 +17,7 @@ A Discord bot with more than 30 + commands which allows playing music on your se
 ```Javascript
 {
     "token": "", // Your bot token
-    "prefix": "?", // Your prefix
+    "prefix": "-", // Your prefix
     
     "playlistLimit": "15", // Optional - Defaults to 15 if not provided 0 is unlimited
 
@@ -83,38 +83,42 @@ Finally, host the bot and invite it to your own server.
 ## Commands
 
 ```
-?play <Url/Query> : Search on youtube and play the music.
-?search <Query> : Search a song on youtube.
-?nowplaying : Display data about the current song.
-?join : Add the bot to your voice channel.
-?leave : Remove the bot of your voice channel.
-?pause : Pause the current song.
-?resume : Resume the current song.
-?volume <0-100> : Change the bot's volume.
-?queue : Display the queue.
-?shuffle : Shuffle the queue.
-?move <IndexFrom> <IndexTo> : Move a song in the queue.
-?remove <Index> : Remove the song with its index.
-?removedupes : Remove all duplicates song from the queue.
-?leavecleanup : Remove absent user's songs from the queue.
-?clear : Clear the queue.
-?replay : Replay the current song.
-?reload : Reload the current song.
-?loop : Enable or disable the loop mode.
-?loopqueue : Enable or disable the loop queue mode.
+-play(p) <Url/Query> : Search on youtube and play the music.
+-search <Query> : Search a song on youtube.
+-nowplaying : Display data about the current song.
+-join(j) : Add the bot to your voice channel.
+-leave(dc) : Remove the bot of your voice channel.
+-pause : Pause the current song.
+-resume : Resume the current song.
+-volume(vol) <0-100> : Change the bot's volume.
+-queue(q) : Display the queue.
+-shuffle : Shuffle the queue.
+-move <IndexFrom> <IndexTo> : Move a song in the queue.
+-remove(r) <Index> : Remove the song with its index.
+-removedupes : Remove all duplicates song from the queue.
+-leavecleanup : Remove absent user's songs from the queue.
+-clear : Clear the queue.
+-replay : Replay the current song.
+-reload(rd) : Reload the current song.
+-loop : Enable or disable the loop mode.
+-loopqueue(lq) : Enable or disable the loop queue mode.
+-seek <time> : Play the song from specific times.(ex: -seek 1:30 it mean the song will play from 1m30s positions)
+-skipto(sto) <index>: Play song from specific location in queue.
+-lyrics: to see the lyrics.
 
-?playlist add <Url> : Add a track to your playlist.
-?playlist remove <Index> : Remove a track to your playlist.
-?playlist display : Display playlist's songs.
-?playlist load : Add the whole playlist to the queue.
+-playlist(pl) display : Display playlist's names.
+-playlist(pl) add <playlist_name> <Url/Query> : Add a track to your playlist.
+-playlist(pl) remove <playlist_name> <Index> : Remove a track to your playlist.
+-playlist(pl) show <playlist_name> : Display playlist's songs.
+-playlist(pl) load : Add the whole playlist to the queue.
 
-?stats : Display the bot's stats.
-?support : Give a link to join the support server.
-?invite : Give a link to invite the bot.
-?vote : Give the Top.gg link to vote for the bot.
-?help : Display the help.
+-stats : Display the bot's stats.
+-support : Give a link to join the support server.
+-invite : Give a link to invite the bot.
+-vote : Give the Top.gg link to vote for the bot.
+-help : Display the help.
 
-?logout : Stop the bot process.
+-logout : Stop the bot process.
 ```
 
 
