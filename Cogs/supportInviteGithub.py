@@ -22,7 +22,7 @@ class CogSupportInviteGithub(commands.Cog):
     @commands.cooldown(1, 2, commands.BucketType.member)
     async def invite(self, ctx):
         embed = discord.Embed(title="Invite the bot :",
-                              description=f"Invite {self.bot.user.mention} on your server : https://discord.com/oauth2/authorize?client_id=709802619459076167&scope=bot&permissions=2147483647",
+                              description=f"Invite {self.bot.user.mention} on your server : https://discord.com/oauth2/authorize?client_id=709802619459076167&scope=bot&permissions=3224706368",
                               color=discord.Colour.random())
         embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
@@ -33,7 +33,7 @@ class CogSupportInviteGithub(commands.Cog):
     @commands.cooldown(1, 2, commands.BucketType.member)
     async def github(self, ctx):
         embed = discord.Embed(title="Github link :",
-                              description=f"See the code of {self.bot.user.mention} on GitHub : https://github.com/shamspias/pommis/tree/pommisv2",
+                              description=f"See the code of {self.bot.user.mention} on GitHub : https://github.com/shamspias/pommis",
                               color=discord.Colour.random())
         embed.set_footer(text=f"Requested by {ctx.author} | {ctx.message.guild.name}", icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)

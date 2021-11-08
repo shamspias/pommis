@@ -9,6 +9,7 @@ class CogVolume(commands.Cog):
         self.bot = bot
 
     @commands.command(name="volume",
+                      aliases=["vol", "VOL"],
                       usage="<0 to 200>",
                       description="Change the bot's volume.")
     @commands.guild_only()

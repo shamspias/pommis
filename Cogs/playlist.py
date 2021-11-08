@@ -68,9 +68,11 @@ class CogPlaylist(commands.Cog):
                       description="Remove a playlist")
     @commands.guild_only()
     async def playlist_name_remove(self, ctx, index):
-
-        index = int(index) - 1
-
+        
+        try:
+            index = int(index) - 1
+        except:
+            return await ctx.send("Please Enter Playlist Index Number")
         playlistContent = DBPlaylist(self.bot.dbConnection).display_playlist_names(ctx.author.id)  # Request
         if len(playlistContent) <= 0:
             return await ctx.channel.send(

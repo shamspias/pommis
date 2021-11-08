@@ -61,10 +61,7 @@ class HelpCog(commands.Cog, name="help command"):
         else:
             message1 = (f"""
             **{self.bot.command_prefix}help (command) :** Display the help list or the help data for a specific command.\n
-            **{self.bot.command_prefix}support :** Give a link to join the support server.
             **{self.bot.command_prefix}invite :** Give a link to invite the bot.
-            **{self.bot.command_prefix}github :** Give the github link of the bot (source code).
-            **{self.bot.command_prefix}vote :** Give the Top.gg link to vote for the bot.
 
             **{self.bot.command_prefix}play(p) <Url/Query> :** Search on youtube and play the music.
             **{self.bot.command_prefix}search <Query> :** Search a song on youtube.
@@ -73,27 +70,34 @@ class HelpCog(commands.Cog, name="help command"):
             **{self.bot.command_prefix}leave(dc) :** Remove the bot of your voice channel.
             **{self.bot.command_prefix}pause(pas) :** Pause the current song.
             **{self.bot.command_prefix}resume(res) :** Resume the current song.
-            **{self.bot.command_prefix}volume <0-100> :** Change the bot's volume.
+            **{self.bot.command_prefix}volume(vol) <0-100> :** Change the bot's volume.
             **{self.bot.command_prefix}queue(q) :** Display the queue.
             **{self.bot.command_prefix}move <IndexFrom> <IndexTo> :** Move a song in the queue.   
+            **{self.bot.command_prefix}seek <time> :** Play song from specific time. (Ex: -seek 01:30 it will play from 1m30s position)
+            **{self.bot.command_prefix}lyrics  :** To see Lyrics of that song.  
             """)
 
             message2 = (f"""
-            **{self.bot.command_prefix}remove <Index> :** Remove the song with its index.
+            **{self.bot.command_prefix}remove(r) <Index> :** Remove the song with its index.
             **{self.bot.command_prefix}clear :** Clear the queue.
             **{self.bot.command_prefix}replay(rp) :** Replay the current song.
             **{self.bot.command_prefix}reload(rd) :** Reload the current song.
             **{self.bot.command_prefix}loop :** Enable or disable the loop mode.
             **{self.bot.command_prefix}loopqueue(lq) :** Enable or disable the loop queue mode.
+            **{self.bot.command_prefix}skip(s) :** Skip current song from queue.
+            **{self.bot.command_prefix}skipto(sto) :** Play from specific song in queue.
 
-            **{self.bot.command_prefix}playlist(pl) add <Url> :** Add a track to your playlist.
-            **{self.bot.command_prefix}playlist(pl) remove <Index> :** Remove a track to your playlist.
-            **{self.bot.command_prefix}playlist(pl) display :** Display playlist's songs.
-            **{self.bot.command_prefix}playlist(pl) load :** Add the whole playlist to the queue.
+            **{self.bot.command_prefix}playlist(pl) display :** Display playlist's names.
+            **{self.bot.command_prefix}playlist(pl) add <playlist_name> <Url/song name> :** Add a track to your playlist.
+            **{self.bot.command_prefix}playlist(pl) remove <playlist_name> <Index> :** Remove a track to your playlist.
+            **{self.bot.command_prefix}playlist(pl) show <playlist_name> :** show songs in playlist's.
+            **{self.bot.command_prefix}playlist(pl) load <playlist_name> :** Add the whole playlist to the queue.
 
             **{self.bot.command_prefix}stats :** Display the bot's stats.
             """)
 
+
+            # 
             # **{self.bot.command_prefix}shuffle :** Shuffle the queue.
             # **{self.bot.command_prefix}removedupes :** Remove all duplicates song from the queue.
             # **{self.bot.command_prefix}leavecleanup :** Remove absent user's songs from the queue.
