@@ -17,7 +17,6 @@ class CogSkipTo(commands.Cog):
                       usage="",
                       description="Skip music to specific position.")
     @commands.guild_only()
-    @commands.cooldown(1, 2, commands.BucketType.member)
     async def skip_to(self, ctx, index):
 
         if not await Check().userInVoiceChannel(ctx, self.bot): return
@@ -46,7 +45,7 @@ class CogSkipTo(commands.Cog):
 
         # Clean the dict
         DBSkip(self.bot.dbConnection).clear(ctx.guild.id)
-        await ctx.send(f"{ctx.author.mention} Current music skipped!")
+        await ctx.send(f"{ctx.author.mention} music skiped to !")
 
         player = self.bot.wavelink.get_player(ctx.guild.id)
         await player.seek(player.current.duration)

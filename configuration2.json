@@ -1,0 +1,25 @@
+{
+    "token": "OTEwNzc5MDgxNjk4NzA5NTQ1.YZXzHg.gX-8kENqh7oEVBOz-1pKrr6fhxM",
+    "prefix": "_",
+
+    "lyricsApi": "",
+
+    "playlistLimit": "100",   
+ 
+    "spotifyClientId": "2af613ce71364a6c884eb85e688ddd05",
+    "spotifyClientSecret": "7700a586239d4f2d8295087843b6a60d",
+    
+    "dblToken": "",
+
+    "lavalinkHost": "lavalink",
+    "lavalinkPort": 2333,
+    "lavalinkRestUri": "http://lavalink:2333",
+    "lavalinkPassword": "youshallnotpass",
+    "lavalinkIdentifier": "Pommis",
+    "lavalinkRegion": "asia",
+  
+    "MySQLHost": "db",
+    "MySQLLogin": "root",
+    "MySQLPassword": "noMore@0909#",
+    "MySQLDatabase": "Pommis"
+}
