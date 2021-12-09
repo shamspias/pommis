@@ -17,7 +17,7 @@ class CogSkip(commands.Cog):
                       usage="",
                       description="Skip the current music.")
     @commands.guild_only()
-    @commands.cooldown(1, 2, commands.BucketType.member)
+    # @commands.cooldown(1, 2, commands.BucketType.member)
     async def skip(self, ctx):
 
         if not await Check().userInVoiceChannel(ctx, self.bot): return
